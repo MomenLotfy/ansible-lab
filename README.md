@@ -1,9 +1,9 @@
-🚀 Ansible Inventory Lab
+ Ansible Inventory Lab
 Static vs Dynamic Inventory in AWS Environments
 
 This lab explains the difference between Static Inventory and Dynamic Inventory in Ansible, and why dynamic inventory is essential in cloud environments like AWS.
 
-📌 What is Ansible Inventory?
+ What is Ansible Inventory?
 
 Ansible Inventory is the source that contains the list of servers managed by Ansible.
 
@@ -13,7 +13,7 @@ Which servers to manage
 How to group servers (web, db, etc.)
 SSH connection details (user, key, etc.)
 Variables assigned to hosts or groups
-🧱 Static Inventory
+ Static Inventory
 
 Static Inventory means manually defining servers inside a file such as inventory.ini or hosts.yml.
 
@@ -50,7 +50,7 @@ Connects to AWS
 Retrieves EC2 instances
 Filters them using tags
 Builds the inventory dynamically
-⭐ Why Dynamic Inventory is Important
+ Why Dynamic Inventory is Important
 
 In cloud environments:
 
@@ -58,9 +58,9 @@ Instances are frequently created and deleted
 IP addresses can change
 Auto Scaling Groups add/remove servers automatically
 
-👉 Manual inventory becomes unreliable
+ Manual inventory becomes unreliable
 
-🏷️ AWS Tags + Dynamic Inventory
+ AWS Tags + Dynamic Inventory
 
 AWS Tags are key-value pairs assigned to EC2 instances:
 
@@ -121,7 +121,7 @@ Queries AWS again
 Finds the instance using tags
 Gets updated IP automatically
 Connects successfully
-🧰 Useful Commands
+ Useful Commands
 View inventory structure
 ansible-inventory -i aws_ec2.yml --graph
 List all hosts
@@ -146,11 +146,11 @@ Install dependencies
 pip install boto3 botocore
 Configure AWS
 aws configure
-🎯 Key Concept
+ Key Concept
 
 Dynamic Inventory + AWS Tags = Automatic Discovery + Zero Manual Updates
 
-🧠 Summary
+ Summary
 
 In this lab, you learned:
 
