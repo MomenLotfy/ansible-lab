@@ -88,6 +88,9 @@ Searches in us-east-1 region
 Filters only running instances
 Selects instances with Environment=dev tag
 Groups hosts based on Name tag
+
+
+
 ⚖️ Static vs Dynamic Inventory
 Static Inventory
 Manually defined hosts
@@ -99,6 +102,9 @@ Automatically discovered hosts
 Uses cloud APIs
 Ideal for production environments
 Scalable and flexible
+
+
+
 🧪 Real-World Scenario
 AWS EC2 Instance:
 Name = webserver
@@ -130,6 +136,9 @@ Test connection
 ansible -i aws_ec2.yml all -m ping
 Run playbook
 ansible-playbook -i aws_ec2.yml playbook.yml
+
+
+
 ⚙️ Requirements
 
 To use AWS Dynamic Inventory:
