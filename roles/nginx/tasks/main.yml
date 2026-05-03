@@ -1,0 +1,39 @@
+---
+- name: Install nginx
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+    update_cache: true
+
+- name: Create web root
+  ansible.builtin.file:
+    path: "{{ nginx_root }}"
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: "0755"
+
+- name: Deploy nginx config
+  ansible.builtin.template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/sites-available/default
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Restart nginx
+
+- name: Deploy index page
+  ansible.builtin.copy:
+    dest: "{{ nginx_root }}/index.html"
+    content: |
+      <h1>{{ site_title }}</h1>
+      <p>Server: {{ inventory_hostname }}</p>
+    owner: www-data
+    group: www-data
+    mode: "0644"
+
+- name: Start and enable nginx
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    enabled: true

@@ -1,0 +1,32 @@
+---
+- name: Configure web servers with nginx role
+  hosts: web
+  become: true
+  roles:
+    - role: nginx
+      vars:
+        nginx_port: 80
+
+- name: Configure DB servers with MySQL Galaxy role
+  hosts: web
+  become: true
+
+  vars:
+    mysql_root_password: "SecurePass123"
+    mysql_databases:
+      - name: appdb
+
+    # Empty list to avoid mysql_native_password issue on Ubuntu 26.04
+    mysql_users: []
+
+  roles:
+    - role: geerlingguy.mysql
+
+  post_tasks:
+    - name: Create MySQL app user manually
+      ansible.builtin.command: >
+        mysql -e "CREATE USER IF NOT EXISTS 'appuser'@'%' IDENTIFIED BY 'AppPass123';"
+
+    - name: Grant privileges to app user
+      ansible.builtin.command: >
+        mysql -e "GRANT ALL PRIVILEGES ON appdb.* TO 'appuser'@'%'; FLUSH PRIVILEGES;"

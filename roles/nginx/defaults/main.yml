@@ -1,0 +1,7 @@
+---
+nginx_port: 80
+nginx_root: /var/www/html
+nginx_worker_processes: 2
+nginx_max_connections: 1024
+site_title: "My Nginx Site"
+# defaults file for nginx
